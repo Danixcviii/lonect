@@ -3,10 +3,10 @@ int[][] nodos; //listado con los nodos del nivel
 int[][] lazosPrincipales={{0,1,0,0,0,0,0,1,0,0},
                           {1,0,1,1,0,0,0,0,0,0},
                           {0,1,0,0,0,0,0,0,0,1},
-                          {0,1,0,0,1,1,0,0,0,0},
+                          {0,1,0,0,1,1,1,0,0,0},
                           {0,0,0,1,0,0,1,0,0,0},
                           {0,0,0,1,0,0,1,0,0,0},
-                          {0,0,0,0,1,1,0,0,1,0},
+                          {0,0,0,1,1,1,0,0,1,0},
                           {1,0,0,0,0,0,0,0,1,0},
                           {0,0,0,0,0,0,1,1,0,1},
                           {0,0,1,0,0,0,0,0,1,0},
@@ -176,7 +176,10 @@ void pintarNivel(int[][] nodos,int d,int [][]lazosPrincipales){
 //pinta los nodos almacenados en nodos , con diametro d
 void pintarNodos(int[][] nodos,int d) {
   for (int i=0; i<nodos.length; i++) {
-    ellipse(nodos[i][X], nodos[i][Y], d, d);
+     pushStyle();
+        stroke(4);
+       ellipse(nodos[i][X], nodos[i][Y], d, d);
+     
   };
 };
 
@@ -184,7 +187,9 @@ void pintarLazos(int[][] nodos,int[][] lazos){
   for(int i=0;i<lazos.length;i++){
     for(int j=0;j<lazos[i].length;j++){
        if(lazos[i][j]==1){
+         
          line(nodos[i][0],nodos[i][1],nodos[j][0],nodos[j][1]);
+      
             // nodos 1 x, nodos 1 y, nodos 2 x, nodo 2 y;
        };
     };
@@ -240,10 +245,10 @@ void jugar(){
 };
 
 boolean won(int[][] lazosUsuario,int[][] lazosPermitidos){
-  boolena won=false;
+  boolean won=true;
  for(int i=0;i<lazosUsuario.length;i++){
   for(int j=0;j<lazosUsuario[i].length;j++){
-     won|=(lazosUsuario[i][j]==lazosPermitidos[i][j]);
+     won &=(lazosUsuario[i][j]==lazosPermitidos[i][j]);
   };
  };
   return won;
@@ -254,10 +259,11 @@ void setup(){
    size(500,500);
    nodos=initNodos(centro,grafo,350,350);
     lazosUsuario=initLazosUsuario(nodos);
+  background(#ffffff);
 };
 
 void draw(){
-  clear();
+ // clear();
    pintarNivel(nodos,d,lazosPrincipales);
    pushStyle();
     stroke(#FF0000);
