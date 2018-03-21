@@ -233,6 +233,16 @@ void jugar(){
   };
 };
 
+boolean won(int[][] lazosUsuario,int[][] lazosPermitidos){
+  boolena won=false;
+ for(int i=0;i<lazosUsuario.length;i++){
+  for(int j=0;j<lazosUsuario[i].length;j++){
+     won|=(lazosUsuario[i][j]==lazosPermitidos[i][j]);
+  };
+ };
+  return won;
+};
+
 
 void setup(){
    size(500,500);
