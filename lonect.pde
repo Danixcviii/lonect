@@ -218,12 +218,18 @@ void keyTyped(){
  };
 };
 
-
+boolean won=false;
 
 void jugar(){
  if(!juegoTerminado){
+    won=won(lazosUsuario,lazosPrincipales);
    if(lazoRepetido(lazosUsuario) || !lazoPermitido(lazosUsuario)){
     juegoTerminado=!juegoTerminado;
+   };
+   if(!won){
+    
+   }else{
+    println("usted Gano!!");
    };
  }else{
    println("usted ha perdido, presione r para reiniciar");
